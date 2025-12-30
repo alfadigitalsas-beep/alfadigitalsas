@@ -1,0 +1,102 @@
+/* =========================
+   ESTILO GENERAL (CLARO)
+========================= */
+body {
+    background-color: #f8fafc;   /* blanco suave */
+    color: #0f172a;              /* texto oscuro */
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* =========================
+   LOGO NAVBAR
+========================= */
+.logo-navbar {
+    height: 35px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.logo-navbar:hover {
+    transform: scale(1.08);
+}
+
+/* =========================
+   NAVBAR (BLANCO TECH)
+========================= */
+.tech-navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tech-navbar .navbar-brand,
+.tech-navbar .nav-link {
+    color: #0f172a !important;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.tech-navbar .nav-link:hover {
+    color: #2563eb; /* azul tech */
+}
+
+/* =========================
+   HERO / TÍTULOS
+========================= */
+h1, h2, h3, h4, h5 {
+    color: #020617;
+    font-weight: 700;
+}
+
+/* =========================
+   CARDS TECNOLÓGICAS
+========================= */
+.tech-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 28px;
+    transition: all 0.3s ease;
+}
+
+.tech-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(2, 6, 23, 0.08);
+}
+
+/* =========================
+   BOTONES
+========================= */
+.btn-outline-info {
+    border-color: #2563eb;
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.btn-outline-info:hover {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+/* =========================
+   FORMULARIOS
+========================= */
+.form-control {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #020617;
+}
+
+.form-control:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+/* =========================
+   FOOTER
+========================= */
+.tech-footer {
+    background-color: #f1f5f9;
+    border-top: 1px solid #e5e7eb;
+    color: #475569;
+}
