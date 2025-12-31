@@ -9,6 +9,7 @@
 
     <!-- CSS propio -->
     <link rel="stylesheet" href="{{ asset('css/app-raiz.css') }}">
+     @stack('styles')
 </head>
 <body>
 
