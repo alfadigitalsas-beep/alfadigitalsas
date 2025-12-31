@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Alfa Digital SAS</title>
-
+ 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- CSS propio -->
     <link rel="stylesheet" href="{{ asset('css/app-raiz.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
      @stack('styles')
 </head>
 <body>
@@ -56,11 +57,52 @@
 </main>
 
 <!-- FOOTER -->
-<footer class="tech-footer text-center py-4">
-    <p class="mb-0">
-        © {{ date('Y') }} Alfa Digital SAS · Tecnología que impulsa negocios
-    </p>
+<footer class="tech-footer">
+    <div class="footer-container">
+
+        {{-- Marca --}}
+        <div class="footer-brand">
+            <h4>ALFA DIGITALSOLUTIONS S.A.S</h4>
+            <p>Tecnología que impulsa negocios</p>
+        </div>
+
+        {{-- Links --}}
+        <div class="footer-links">
+            <h5>Empresa</h5>
+            <ul>
+                <li><a href="#">Sobre nosotros</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </div>
+
+        {{-- Redes --}}
+        <div class="footer-social">
+            <h5>Síguenos</h5>
+            <div class="social-icons">
+                <a href="#" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    {{-- Copyright --}}
+    <div class="footer-bottom">
+        © {{ date('Y') }} Alfa Digital Solutions S.A.S · Todos los derechos reservados
+    </div>
 </footer>
+
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
