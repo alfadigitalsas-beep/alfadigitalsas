@@ -5,7 +5,7 @@
     border-radius: 22px;
     overflow: hidden;
     margin-bottom: 70px;
-}
+} 
 
 .tech-carousel img {
     height: 75vh;
@@ -108,7 +108,7 @@
 
 /* Tarjeta central destacada */
 .metodo-card.destacado {
-    border: 2px solid #0d6efd;
+    border: 2px solid #e9eaec;
     transform: translateY(-10px);
 }
 
@@ -122,6 +122,46 @@
         font-size: 1.4rem;
     }
 }
+/* Tarjetas metodología */
+.metodo-card {
+    background-color: #ffffff;
+    color: #0f172a;
+    transition: all 0.3s ease;
+}
+
+/* Hover tarjetas */
+.metodo-card:hover {
+    background-color: #38bdf8; /* azul clarito */
+    color: #ffffff;
+    transform: translateY(-10px);
+}
+
+/* Texto blanco en hover */
+.metodo-card:hover h5,
+.metodo-card:hover .metodo-icon {
+    color: #ffffff;
+}
+
+/* Tarjeta central destacada */
+.metodo-card.destacado {
+    border: 2px solid #e9eaec;
+    transform: translateY(-10px);
+}
+
+.metodo-card.destacado:hover {
+    background-color: #38bdf8;
+    color: #ffffff;
+    transform: translateY(-14px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .metodologia-title {
+        font-size: 1.4rem;
+    }
+}
+
+
 /* =========================
    SOFTWARE A MEDIDA
 ========================= */

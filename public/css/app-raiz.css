@@ -25,7 +25,7 @@ body {
    NAVBAR (BLANCO TECH)
 ========================= */
 .tech-navbar {
-    background-color: #ffffff;
+    background-color: #fafafa;
     border-bottom: 1px solid #e5e7eb;
 }
 
@@ -99,4 +99,40 @@ h1, h2, h3, h4, h5 {
     background-color: #f1f5f9;
     border-top: 1px solid #e5e7eb;
     color: #475569;
+}
+
+
+
+
+
+
+
+
+/* Estado normal */
+.tech-navbar {
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover sobre TODO el navbar */
+.tech-navbar:hover {
+    background-color: #38bdf8; /* azul clarito */
+}
+
+/* Letras del menú */
+.tech-navbar .nav-link,
+.tech-navbar .navbar-brand {
+    color: #0f172a !important;
+    transition: color 0.3s ease;
+}
+
+/* Letras blancas al pasar el mouse */
+.tech-navbar:hover .nav-link,
+.tech-navbar:hover .navbar-brand {
+    color: #ffffff !important;
+}
+
+/* Logo en blanco (opcional pero recomendado) */
+.tech-navbar:hover .logo-navbar {
+    filter: brightness(0) invert(1);
 }

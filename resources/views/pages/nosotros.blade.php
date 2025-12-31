@@ -65,7 +65,48 @@
 
     </div>
 </section>
+{{-- ===== SECCIÓN MISION ===== --}}
+<section class="nosotros-section">
+    <div class="nosotros-container">
 
+        <div class="nosotros-texto">  
+            <h2>Nuestra Misión</h2>           
+
+            <p>
+                 Impulsar el crecimiento de las empresas  más allá,
+                 ofreciendo soluciones tecnológicas innovadoras
+                 y accesibles que optimicen sus operaciones y les permitan alcanzar su máximo potencial.
+            </p>
+            
+        </div>
+
+        <div class="nosotros-imagen">
+            <img src="{{ asset('img/logos/serv6.png') }}" alt="Equipo TECA">
+        </div>
+
+    </div>
+</section>
+{{-- ===== SECCIÓN VISION ===== --}}
+<section class="valores-section">
+    <div class="valores-container">
+
+        <div class="valores-imagenes">
+            <img src="{{ asset('img/logos/serv7.png') }}" alt="Ciudad">
+            
+        </div>
+
+        <div class="valores-texto">
+            <h2>Nuestra Visión</h2>
+
+            <p>
+                Ser la empresa líder en soluciones tecnológicas en la región,
+                 reconocida por nuestra innovación, calidad de servicio
+                  y compromiso con el éxito de nuestros clientes.
+            </p>
+        </div>
+
+    </div>
+</section>
 {{-- ===== SECCIÓN FILOSOFÍA / VALORES EN COLUMNAS ===== --}}
 <section class="filosofia-section">
     <div class="filosofia-container">
@@ -161,6 +202,7 @@
 
     </div>
 </section>
+{{-- ===== SECCIÓN INFO ===== --}}
 <section class="hero-section">
     <div class="hero-container">
 

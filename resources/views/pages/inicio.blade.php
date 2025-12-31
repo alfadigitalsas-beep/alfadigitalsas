@@ -194,6 +194,12 @@
                             <div class="progress-fill" style="width:100%">100%</div>
                         </div>
                     </div>
+                    <div class="tech-bar">
+                        <span>PHP</span>
+                        <div class="progress">
+                            <div class="progress-fill" style="width:100%">100%</div>
+                        </div>
+                    </div>
 
                     <div class="tech-bar">
                         <span>CSS3</span>
