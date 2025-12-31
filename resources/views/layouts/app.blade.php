@@ -34,10 +34,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/nosotros">Nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/mision-vision">Misión & Visión</a>
-                </li>
+                </li>               
                 <li class="nav-item">
                     <a class="nav-link" href="/servicios">Servicios</a>
                 </li>
@@ -63,8 +60,37 @@
         {{-- Marca --}}
         <div class="footer-brand">
             <h4>ALFA DIGITALSOLUTIONS S.A.S</h4>
-            <p>Tecnología que impulsa negocios</p>
+            <p>Gracias por preferir.Alfa Digital Solutions S. A .S
+            ¡Esperamos tu regreso muy pronto!
+            Tecnología que impulsa negocios</p>
         </div>
+
+        {{-- producto --}}
+        <div class="footer-brand"> 
+            <h4>PRODUCTOS</h4>
+            <p>Software contable</p>
+            <p>Software de Software</p>  
+            <p>Software de inventario</p>
+            <p>Optimisacion Tecnologica</p>
+            <p>Software Gestión Empresarial</p>
+            <p>Soporte y asesoria TI</p> 
+        </div>
+        {{-- Políticas --}}
+        <div class="footer-brand">
+            <h4>POLITICAS</h4>
+            <p>Protección de datos</p>
+            <p>Política de seguridad</p>
+            
+        </div>  
+        {{-- Ubícanos --}}
+        <div class="footer-brand">
+            <h4>Ubícanos</h4>
+            <p>Calle 10 No. 20 - 06</p>
+            <p>alfadigital.sas@gmail.com</p>
+            <p>(+57) 313 256 0420</p>
+            <p>862060 Puerto Asís, Putumayo Colombia</p>
+            
+        </div> 
 
         {{-- Links --}}
         <div class="footer-links">
@@ -74,7 +100,7 @@
                 <li><a href="#">Servicios</a></li>
                 <li><a href="#">Contacto</a></li>
             </ul>
-        </div>
+        </div>   
 
         {{-- Redes --}}
         <div class="footer-social">
