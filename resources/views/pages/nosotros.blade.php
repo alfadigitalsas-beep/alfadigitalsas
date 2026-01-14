@@ -18,7 +18,7 @@
             <h4>Un equipo cercano con grandes ambiciones</h4>
 
             <p>
-                En <strong>TECA ARQUITECTOS</strong> trabajamos para que el alquiler
+                En <strong>ALFA DIGITAL SOLUCTIONS S.A.S </strong> trabajamos para que el alquiler
                 de herramientas y equipos sea simple, rápido y confiable.
             </p>
 
