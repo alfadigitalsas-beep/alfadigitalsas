@@ -67,6 +67,7 @@
                                 <button type="button" id="btnSendMail" class="btn btn-mail w-100">
                                     <i class="fa-solid fa-envelope me-2"></i>Enviar por Correo
                                 </button>
+                                <div id="statusAlert" class="alert d-none mb-0 mt-2" role="alert"></div>
                                 <p class="response-note mb-0 mt-2">Tiempo promedio de respuesta: menos de 30 minutos en horario laboral.</p>
                             </div>
                         </div>
@@ -137,124 +138,162 @@
 </div>
 
 <script>
-    const PLANES = {
-        inventario: [
-            'Plan Mensual - $280.000 / mes',
-            'Compra Total - $10.000.000 + hosting'
-        ],
-        celulares: [
-            'Plan Basico - $30.000 / mes',
-            'Plan Profesional - $50.000 / mes',
-            'Compra Total - $2.000.000 (pago unico)'
-        ]
-    };
+    document.addEventListener('DOMContentLoaded', function () {
+        const PLANES = {
+            inventario: [
+                'Plan Mensual - $280.000 / mes',
+                'Compra Total - $10.000.000 + hosting'
+            ],
+            celulares: [
+                'Plan Basico - $30.000 / mes',
+                'Plan Profesional - $50.000 / mes',
+                'Compra Total - $2.000.000 (pago unico)'
+            ]
+        };
 
-    const softwareSelect = document.getElementById('software');
-    const planSelect = document.getElementById('plan');
-    const form = document.getElementById('contactForm');
-    const previewText = document.getElementById('previewWhatsappText');
-    const previewModal = new bootstrap.Modal(document.getElementById('whatsappPreviewModal'));
+        const softwareSelect = document.getElementById('software');
+        const planSelect = document.getElementById('plan');
+        const form = document.getElementById('contactForm');
+        const previewText = document.getElementById('previewWhatsappText');
+        const statusAlert = document.getElementById('statusAlert');
+        let previewModal = null;
 
-    softwareSelect.addEventListener('change', actualizarPlanes);
-    document.getElementById('btnPreviewWhatsapp').addEventListener('click', previsualizarWhatsapp);
-    document.getElementById('btnConfirmWhatsapp').addEventListener('click', enviarWhatsAppFinal);
-    document.getElementById('btnSendMail').addEventListener('click', enviarCorreo);
-
-    function actualizarPlanes() {
-        const software = softwareSelect.value;
-        const planes = PLANES[software] || [];
-
-        planSelect.innerHTML = '';
-
-        if (!planes.length) {
-            planSelect.disabled = true;
-            planSelect.innerHTML = '<option value="">Selecciona primero un software</option>';
-            return;
+        function showStatus(type, message) {
+            statusAlert.className = 'alert alert-' + type + ' mb-0 mt-2';
+            statusAlert.textContent = message;
         }
 
-        planSelect.disabled = false;
-        planSelect.innerHTML = '<option value="">Selecciona un plan</option>';
+        function getPreviewModal() {
+            if (!window.bootstrap) {
+                showStatus('danger', 'Error: no cargo Bootstrap JS. Recarga la pagina (Ctrl + F5).');
+                return null;
+            }
 
-        planes.forEach((plan) => {
-            const option = document.createElement('option');
-            option.value = plan;
-            option.textContent = plan;
-            planSelect.appendChild(option);
-        });
-    }
+            if (!previewModal) {
+                previewModal = new bootstrap.Modal(document.getElementById('whatsappPreviewModal'));
+            }
 
-    function construirDatosMensaje() {
-        const nombre = document.getElementById('nombre').value.trim();
-        const correo = document.getElementById('correo').value.trim();
-        const telefono = document.getElementById('telefono').value.trim();
-        const software = softwareSelect.value;
-        const plan = planSelect.value;
-        const mensaje = document.getElementById('mensaje').value.trim();
-
-        if (!nombre || !software || !plan) {
-            form.reportValidity();
-            return null;
+            return previewModal;
         }
 
-        const softwareTexto = software === 'inventario'
-            ? 'Inventario y alquiler'
-            : 'Ventas y reparacion de celulares';
+        function actualizarPlanes() {
+            const software = softwareSelect.value;
+            const planes = PLANES[software] || [];
 
-        const texto = [
-            'Hola, quiero informacion comercial.',
-            'Nombre: ' + nombre,
-            'Software: ' + softwareTexto,
-            'Plan: ' + plan,
-            'Correo: ' + (correo || 'No especificado'),
-            'Telefono: ' + (telefono || 'No especificado'),
-            'Mensaje: ' + (mensaje || 'Quiero conocer detalles y una demo.')
-        ].join('\n');
+            planSelect.innerHTML = '';
 
-        return { texto, nombre, softwareTexto, plan, correo, telefono, mensaje };
-    }
+            if (!planes.length) {
+                planSelect.disabled = true;
+                planSelect.innerHTML = '<option value="">Selecciona primero un software</option>';
+                return;
+            }
 
-    function previsualizarWhatsapp() {
-        const data = construirDatosMensaje();
-        if (!data) {
-            return;
+            planSelect.disabled = false;
+            planSelect.innerHTML = '<option value="">Selecciona un plan</option>';
+
+            planes.forEach((plan) => {
+                const option = document.createElement('option');
+                option.value = plan;
+                option.textContent = plan;
+                planSelect.appendChild(option);
+            });
         }
 
-        previewText.textContent = data.texto;
-        previewModal.show();
-    }
+        function construirDatosMensaje() {
+            const nombre = document.getElementById('nombre').value.trim();
+            const correo = document.getElementById('correo').value.trim();
+            const telefono = document.getElementById('telefono').value.trim();
+            const software = softwareSelect.value;
+            const plan = planSelect.value;
+            const mensaje = document.getElementById('mensaje').value.trim();
 
-    function enviarWhatsAppFinal() {
-        const data = construirDatosMensaje();
-        if (!data) {
-            return;
+            if (!nombre || !software || !plan) {
+                form.reportValidity();
+                showStatus('warning', 'Completa nombre, software y plan para continuar.');
+                return null;
+            }
+
+            const softwareTexto = software === 'inventario'
+                ? 'Inventario y alquiler'
+                : 'Ventas y reparacion de celulares';
+
+            const texto = [
+                'Hola, quiero informacion comercial.',
+                'Nombre: ' + nombre,
+                'Software: ' + softwareTexto,
+                'Plan: ' + plan,
+                'Correo: ' + (correo || 'No especificado'),
+                'Telefono: ' + (telefono || 'No especificado'),
+                'Mensaje: ' + (mensaje || 'Quiero conocer detalles y una demo.')
+            ].join('\n');
+
+            return { texto, nombre, softwareTexto, plan, correo, telefono, mensaje };
         }
 
-        const url = 'https://wa.me/573132560420?text=' + encodeURIComponent(data.texto);
-        previewModal.hide();
-        window.open(url, '_blank');
-    }
+        function previsualizarWhatsapp() {
+            const data = construirDatosMensaje();
+            if (!data) {
+                return;
+            }
 
-    function enviarCorreo() {
-        const data = construirDatosMensaje();
-        if (!data) {
-            return;
+            const modal = getPreviewModal();
+            if (!modal) {
+                return;
+            }
+
+            previewText.textContent = data.texto;
+            modal.show();
         }
 
-        const subject = 'Solicitud comercial - ' + data.plan;
-        const body = [
-            'Hola Alfa Digital,',
-            '',
-            'Quiero mas informacion comercial.',
-            'Nombre: ' + data.nombre,
-            'Software: ' + data.softwareTexto,
-            'Plan: ' + data.plan,
-            'Correo: ' + (data.correo || 'No especificado'),
-            'Telefono: ' + (data.telefono || 'No especificado'),
-            'Mensaje: ' + (data.mensaje || 'Quiero conocer detalles y una demo.')
-        ].join('\n');
+        function enviarWhatsAppFinal() {
+            const data = construirDatosMensaje();
+            if (!data) {
+                return;
+            }
 
-        const mailtoUrl = 'mailto:alfadijital.sas@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-        window.location.href = mailtoUrl;
-    }
+            const url = 'https://wa.me/573132560420?text=' + encodeURIComponent(data.texto);
+            const modal = getPreviewModal();
+            if (modal) {
+                modal.hide();
+            }
+
+            const win = window.open(url, '_blank');
+            if (win) {
+                showStatus('success', 'Se abrio WhatsApp. Revisa y confirma el envio en la app.');
+            } else {
+                showStatus('danger', 'No se pudo abrir WhatsApp. Permite ventanas emergentes y vuelve a intentar.');
+            }
+        }
+
+        function enviarCorreo() {
+            const data = construirDatosMensaje();
+            if (!data) {
+                return;
+            }
+
+            const subject = 'Solicitud comercial - ' + data.plan;
+            const body = [
+                'Hola Alfa Digital,',
+                '',
+                'Quiero mas informacion comercial.',
+                'Nombre: ' + data.nombre,
+                'Software: ' + data.softwareTexto,
+                'Plan: ' + data.plan,
+                'Correo: ' + (data.correo || 'No especificado'),
+                'Telefono: ' + (data.telefono || 'No especificado'),
+                'Mensaje: ' + (data.mensaje || 'Quiero conocer detalles y una demo.')
+            ].join('\n');
+
+            const mailtoUrl = 'mailto:alfadijital.sas@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+            showStatus('info', 'Se abrira tu cliente de correo para confirmar el envio.');
+            window.location.href = mailtoUrl;
+        }
+
+        softwareSelect.addEventListener('change', actualizarPlanes);
+        document.getElementById('btnPreviewWhatsapp').addEventListener('click', previsualizarWhatsapp);
+        document.getElementById('btnConfirmWhatsapp').addEventListener('click', enviarWhatsAppFinal);
+        document.getElementById('btnSendMail').addEventListener('click', enviarCorreo);
+        actualizarPlanes();
+    });
 </script>
 @endsection
