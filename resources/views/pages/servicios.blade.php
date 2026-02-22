@@ -151,105 +151,88 @@
     </section>
     {{-- PLANES--}} 
     <section class="pricing-section container py-5">
-        <h2 class="section-title text-center mb-5">
-            Planes de Alquiler del Sistema
-        </h2>
+    <h2 class="section-title text-center mb-5">
+        Planes del Sistema de Inventario y Alquiler
+    </h2>
 
-        <div class="row g-4 justify-content-center">
+    <div class="row g-4 justify-content-center">
 
-            {{-- PLAN ESTÁNDAR --}}
-            <div class="col-lg-4 col-md-6">
-                <div class="pricing-card">
-                    <h4 class="plan-title">Plan Estándar</h4>
-                    <p class="plan-price">$280.000 <span>/ mes</span></p>
+        <!-- PLAN MENSUAL -->
+        <div class="col-lg-5 col-md-6">
+            <div class="pricing-card featured">
 
-                    <ul class="plan-features">
-                        <li>✅ Acceso a versión estándar</li>
-                        <li>✅ Hosting en servidor confiable</li>
-                        <li>✅ Dominio incluido</li>
-                        <li>✅ Implementación inicial</li>
-                        <li>✅ Backups periódicos</li>
-                        <li>✅ Soporte técnico</li>
-                        <li>✅ Seguridad y control de accesos</li>
-                        <li class="disabled">❌ Funcionalidades a la medida</li>
-                    </ul>
+                <h4 class="plan-title">Plan Mensual</h4>
+                <p class="plan-price">$280.000 <span>/ mes</span></p>
 
-                    <button 
-                        class="btn btn-outline-primary w-100 solicitar-plan"
-                        data-plan="Plan Estándar"
-                        data-precio="280.000"
-                        data-mensaje="Acceso estándar, hosting, dominio, backups y soporte técnico">
-                        Solicitar Plan
-                    </button>
+                <ul class="plan-features">
+                    <li>✅ Acceso completo al sistema</li>
+                    <li>✅ Ajustes a la medida y reglas de negocio</li>
+                    <li>✅ Hosting en servidor confiable (Hostinger)</li>
+                    <li>✅ Dominio incluido</li>
+                    <li>✅ Implementación inicial</li>
+                    <li>✅ Backups periódicos</li>
+                    <li>✅ Soporte técnico</li>
+                    <li>✅ Seguridad de los datos</li>
+                    <li>✅ Administración de CPanel</li>
+                    <li>✅ Administración de base de datos</li>
+                    <li>✅ Manual de usuario</li>
+                    <li>✅ Persistencia de la información</li>
+                    <li>✅ Parches de seguridad</li>
+                </ul>
 
+                <button
+                    class="btn btn-primary w-100 solicitar-plan"
+                    data-plan="Plan Mensual"
+                    data-precio="280.000 COP"
+                    data-mensaje="Acceso completo al sistema con hosting, dominio, soporte, seguridad y ajustes a la medida">
+                    Solicitar Plan
+                </button>
 
-                </div>
             </div>
-
-            {{-- PLAN PREMIUM --}}
-            <div class="col-lg-4 col-md-6">
-                <div class="pricing-card featured">
-                    <span class="badge-popular">Más vendido</span>
-
-                    <h4 class="plan-title">Plan Premium</h4>
-                    <p class="plan-price">$350.000 <span>/ mes</span></p>
-
-                    <ul class="plan-features">
-                        <li>✅ Todo lo del Plan Estándar</li>
-                        <li>✅ Soporte técnico 24/7</li>
-                        <li>✅ Funcionalidades adicionales</li>
-                        <li>✅ Adaptación a reglas del negocio</li>
-                        <li>✅ Actualizaciones del sistema</li>
-                        <li>✅ Manual de usuario digital</li>
-                        <li>✅ Seguridad avanzada</li>
-                    </ul>
-
-                    <button 
-                        class="btn btn-primary w-100 solicitar-plan"
-                        data-plan="Plan Premium"
-                        data-precio="350.000"
-                        data-mensaje="Soporte 24/7, funcionalidades a la medida, actualizaciones y manual de usuario">
-                        Solicitar Plan
-                    </button>
-
-                </div>
-            </div>
-
-            {{-- COMPRA TOTAL --}}
-            <div class="col-lg-4 col-md-6">
-                <div class="pricing-card">
-                    <h4 class="plan-title">Compra Total</h4>
-                    <p class="plan-price">
-                        $10.000.000 <span>pago único</span>
-                    </p>
-
-                    <p class="small text-muted mb-3">
-                        + $50.000 mensuales por hosting
-                    </p>
-
-                    <ul class="plan-features">
-                        <li>✅ Acceso completo al sistema</li>
-                        <li>✅ Código y sistema entregado</li>
-                        <li>✅ Hosting mensual</li>
-                        <li>✅ Dominio incluido</li>
-                        <li>✅ Soporte técnico</li>
-                        <li>✅ Actualizaciones</li>
-                        <li>✅ Manual de usuario</li>
-                    </ul>
-
-                    <button 
-                        class="btn btn-outline-dark w-100 solicitar-plan"
-                        data-plan="Compra Total del Sistema"
-                        data-precio="10.000.000 + 50.000 mensual"
-                        data-mensaje="Entrega completa del sistema, código fuente, soporte y actualizaciones">
-                        Solicitar Información
-                    </button>
-
-                </div>
-            </div>
-
         </div>
-    </section>
+
+        <!-- COMPRA TOTAL -->
+        <div class="col-lg-5 col-md-6">
+            <div class="pricing-card">
+
+                <h4 class="plan-title">Compra Total del Sistema</h4>
+                <p class="plan-price">$10.000.000 <span>pago único</span></p>
+
+                <p class="small text-muted mb-3">
+                    + $50.000 mensuales por hosting
+                </p>
+
+                <ul class="plan-features">
+                    <li>✅ Entrega total del sistema</li>
+                    <li>✅ Ajustes a la medida incluidos</li>
+                    <li>✅ Código y sistema entregado</li>
+                    <li>✅ Hosting mensual</li>
+                    <li>✅ Dominio incluido</li>
+                    <li>✅ Implementación inicial</li>
+                    <li>✅ Backups periódicos</li>
+                    <li>✅ Soporte técnico</li>
+                    <li>✅ Seguridad de los datos</li>
+                    <li>✅ Administración de CPanel</li>
+                    <li>✅ Administración de base de datos</li>
+                    <li>✅ Manual de usuario</li>
+                    <li>✅ Persistencia de la información</li>
+                    <li>✅ Parches de seguridad</li>
+                </ul>
+
+                <button
+                    class="btn btn-outline-dark w-100 solicitar-plan"
+                    data-plan="Compra Total del Sistema"
+                    data-precio="10.000.000 + 50.000 mensual"
+                    data-mensaje="Entrega completa del sistema con código fuente, soporte, hosting y actualizaciones">
+                    Solicitar Información
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
     {{-- alquiler de ventas --}}
     <section class="software-section py-5">
         <div class="container">

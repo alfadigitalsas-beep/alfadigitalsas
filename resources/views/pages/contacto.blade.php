@@ -1,155 +1,260 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/contacto.css') }}">
+@endpush
 
 @section('content')
-<div class="container py-5">
-    <div class="tech-card p-5 shadow rounded">
-
-        <h1 class="mb-3">📞 Contáctenos</h1>
-        <p class="text-muted mb-4">
-            Escríbenos y te asesoramos sin compromiso (sin letra chiquita 😄).
-        </p>
-
-        <div class="row g-4">
-
-            <!-- FORMULARIO -->
-            <div class="col-md-6">
-                <form onsubmit="enviarWhatsApp(event)">
-
-                    <!-- NOMBRE -->
-                    <div class="mb-3">
-                        <label class="form-label">Nombre</label>
-                        <input type="text" id="nombre" class="form-control" required>
-                    </div>
-
-                    <!-- CORREO -->
-                    <div class="mb-3">
-                        <label class="form-label">Correo</label>
-                        <input type="email" id="correo" class="form-control">
-                    </div>
-
-                    <!-- SOFTWARE -->
-                    <div class="mb-3">
-                        <label class="form-label">Software de interés</label>
-                        <select id="software" class="form-select" required onchange="actualizarPlanes()">
-                            <option value="">Seleccione un software</option>
-                            <option value="inventario">Inventarios y Alquiler</option>
-                            <option value="celulares">Ventas y Reparación de Celulares</option>
-                        </select>
-                    </div>
-
-                    <!-- PLAN (DINÁMICO) -->
-                    <div class="mb-3">
-                        <label class="form-label">Plan</label>
-                        <select id="plan" class="form-select" required>
-                            <option value="">Seleccione primero un software</option>
-                        </select>
-                    </div>
-
-                    <!-- MENSAJE -->
-                    <div class="mb-3">
-                        <label class="form-label">Mensaje adicional</label>
-                        <textarea
-                            id="mensaje"
-                            class="form-control"
-                            rows="4"
-                            placeholder="Ej: Quiero una demo o conocer tiempos de implementación."
-                        ></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-success w-100">
-                         Enviar por WhatsApp
-                    </button>
-                </form>
-            </div>
-
-            <!-- INFO -->
-            <div class="col-md-6">
-                <div class="bg-light p-4 rounded h-100">
-                    <h5>Contacto directo</h5>
-                    <p class="mb-2">
-                        📱 <strong>WhatsApp:</strong><br>
-                        +57 313 256 0420
+<section class="contact-page py-4 py-lg-5">
+    <div class="contact-hero tech-card shadow-sm fade-up">
+        <div class="row g-4 g-xl-5 align-items-stretch">
+            <div class="col-lg-7">
+                <div class="contact-form-wrap h-100 fade-up delay-1">
+                    <p class="kicker mb-2">Hablemos de tu proyecto</p>
+                    <h1 class="mb-3">Contacto Comercial</h1>
+                    <p class="lead-text mb-4">
+                        Te ayudamos a elegir el software ideal para tu negocio. Completa el formulario
+                        y en minutos te enviamos informacion por WhatsApp o correo.
                     </p>
-                    <p class="mb-2">
-                        📧 <strong>Correo:</strong><br>
-                        alfadijital.sas@gmail.com
-                    </p>
-                    <p class="mb-0">
-                        🕘 <strong>Horario:</strong><br>
-                        Lun–Vie | 8:00 am – 6:00 pm
-                    </p>
+
+                    <form id="contactForm" class="contact-form" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label" for="nombre">Nombre completo</label>
+                                <input type="text" id="nombre" class="form-control" placeholder="Ej: Carlos Perez" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="correo">Correo (opcional)</label>
+                                <input type="email" id="correo" class="form-control" placeholder="Ej: tuempresa@gmail.com">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="telefono">Telefono (opcional)</label>
+                                <input type="text" id="telefono" class="form-control" placeholder="Ej: 3001234567">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="software">Software de interes</label>
+                                <select id="software" class="form-select" required>
+                                    <option value="">Selecciona una opcion</option>
+                                    <option value="inventario">Inventario y alquiler</option>
+                                    <option value="celulares">Ventas y reparacion de celulares</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label" for="plan">Plan</label>
+                                <select id="plan" class="form-select" required disabled>
+                                    <option value="">Selecciona primero un software</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label" for="mensaje">Mensaje adicional</label>
+                                <textarea
+                                    id="mensaje"
+                                    class="form-control"
+                                    rows="4"
+                                    placeholder="Ej: Quiero una demo y conocer tiempos de implementacion."
+                                ></textarea>
+                            </div>
+
+                            <div class="col-12 pt-2 d-grid gap-2">
+                                <button type="button" id="btnPreviewWhatsapp" class="btn btn-send w-100">
+                                    <i class="fa-brands fa-whatsapp me-2"></i>Enviar por WhatsApp
+                                </button>
+                                <button type="button" id="btnSendMail" class="btn btn-mail w-100">
+                                    <i class="fa-solid fa-envelope me-2"></i>Enviar por Correo
+                                </button>
+                                <p class="response-note mb-0 mt-2">Tiempo promedio de respuesta: menos de 30 minutos en horario laboral.</p>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
 
+            <div class="col-lg-5">
+                <aside class="contact-side h-100 fade-up delay-2">
+                    <h3 class="mb-3">Canales directos</h3>
+                    <p class="mb-4 side-text">
+                        Si prefieres contacto inmediato, usa cualquiera de estos medios.
+                    </p>
+
+                    <div class="contact-list">
+                        <a class="contact-item" href="https://wa.me/573132560420" target="_blank" rel="noopener noreferrer">
+                            <span class="icon-circle"><i class="fa-brands fa-whatsapp"></i></span>
+                            <span>
+                                <small>WhatsApp</small>
+                                <strong>+57 313 256 0420</strong>
+                            </span>
+                        </a>
+
+                        <a class="contact-item" href="mailto:alfadijital.sas@gmail.com">
+                            <span class="icon-circle"><i class="fa-solid fa-envelope"></i></span>
+                            <span>
+                                <small>Correo</small>
+                                <strong>alfadijital.sas@gmail.com</strong>
+                            </span>
+                        </a>
+
+                        <a class="contact-item" href="tel:+573132560420">
+                            <span class="icon-circle"><i class="fa-solid fa-phone"></i></span>
+                            <span>
+                                <small>Telefono</small>
+                                <strong>(+57) 313 256 0420</strong>
+                            </span>
+                        </a>
+                    </div>
+
+                    <div class="mini-info mt-4">
+                        <p class="mb-2"><i class="fa-regular fa-clock me-2"></i>Lunes a viernes: 8:00 am - 6:00 pm</p>
+                        <p class="mb-0"><i class="fa-solid fa-location-dot me-2"></i>Puerto Asis, Putumayo - Colombia</p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="whatsappPreviewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar mensaje de WhatsApp</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <p class="small text-muted mb-2">Se enviara este mensaje:</p>
+                <pre id="previewWhatsappText" class="preview-text mb-0"></pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Editar</button>
+                <button type="button" id="btnConfirmWhatsapp" class="btn btn-success">Abrir WhatsApp</button>
+            </div>
         </div>
     </div>
 </div>
 
-{{-- SCRIPTS --}}
 <script>
+    const PLANES = {
+        inventario: [
+            'Plan Mensual - $280.000 / mes',
+            'Compra Total - $10.000.000 + hosting'
+        ],
+        celulares: [
+            'Plan Basico - $30.000 / mes',
+            'Plan Profesional - $50.000 / mes',
+            'Compra Total - $2.000.000 (pago unico)'
+        ]
+    };
+
+    const softwareSelect = document.getElementById('software');
+    const planSelect = document.getElementById('plan');
+    const form = document.getElementById('contactForm');
+    const previewText = document.getElementById('previewWhatsappText');
+    const previewModal = new bootstrap.Modal(document.getElementById('whatsappPreviewModal'));
+
+    softwareSelect.addEventListener('change', actualizarPlanes);
+    document.getElementById('btnPreviewWhatsapp').addEventListener('click', previsualizarWhatsapp);
+    document.getElementById('btnConfirmWhatsapp').addEventListener('click', enviarWhatsAppFinal);
+    document.getElementById('btnSendMail').addEventListener('click', enviarCorreo);
+
     function actualizarPlanes() {
-        const software = document.getElementById('software').value;
-        const planSelect = document.getElementById('plan');
+        const software = softwareSelect.value;
+        const planes = PLANES[software] || [];
 
-        planSelect.innerHTML = '<option value="">Seleccione un plan</option>';
+        planSelect.innerHTML = '';
 
-        // INVENTARIO Y ALQUILER
-        if (software === 'inventario') {
-            planSelect.innerHTML += `
-                <option value="Plan Estándar - $280.000/mes">
-                    Plan Estándar – $280.000 / mes
-                </option>
-                <option value="Plan Premium - $350.000/mes">
-                    Plan Premium – $350.000 / mes
-                </option>
-                <option value="Compra Total - $10.000.000 + hosting">
-                    Compra Total – $10.000.000 (pago único)
-                </option>
-            `;
+        if (!planes.length) {
+            planSelect.disabled = true;
+            planSelect.innerHTML = '<option value="">Selecciona primero un software</option>';
+            return;
         }
 
-        // VENTAS Y REPARACIÓN DE CELULARES
-        if (software === 'celulares') {
-            planSelect.innerHTML += `
-                <option value="Plan Básico - $30.000/mes">
-                    Plan Básico – $30.000 / mes
-                </option>
-                <option value="Plan Profesional - $50.000/mes">
-                    Plan Profesional – $50.000 / mes
-                </option>
-                <option value="Compra Total - $2.000.000">
-                    Compra Total – $2.000.000 (pago único)
-                </option>
-            `;
-        }
+        planSelect.disabled = false;
+        planSelect.innerHTML = '<option value="">Selecciona un plan</option>';
+
+        planes.forEach((plan) => {
+            const option = document.createElement('option');
+            option.value = plan;
+            option.textContent = plan;
+            planSelect.appendChild(option);
+        });
     }
 
-    function enviarWhatsApp(e) {
-        e.preventDefault();
+    function construirDatosMensaje() {
+        const nombre = document.getElementById('nombre').value.trim();
+        const correo = document.getElementById('correo').value.trim();
+        const telefono = document.getElementById('telefono').value.trim();
+        const software = softwareSelect.value;
+        const plan = planSelect.value;
+        const mensaje = document.getElementById('mensaje').value.trim();
 
-        const nombre   = document.getElementById('nombre').value;
-        const correo   = document.getElementById('correo').value;
-        const software = document.getElementById('software').value;
-        const plan     = document.getElementById('plan').value;
-        const mensaje  = document.getElementById('mensaje').value;
+        if (!nombre || !software || !plan) {
+            form.reportValidity();
+            return null;
+        }
 
         const softwareTexto = software === 'inventario'
-            ? 'Inventarios y Alquiler'
-            : 'Ventas y Reparación de Celulares';
+            ? 'Inventario y alquiler'
+            : 'Ventas y reparacion de celulares';
 
-        let texto =
-    `Hola 👋
-    Mi nombre es ${nombre}
+        const texto = [
+            'Hola, quiero informacion comercial.',
+            'Nombre: ' + nombre,
+            'Software: ' + softwareTexto,
+            'Plan: ' + plan,
+            'Correo: ' + (correo || 'No especificado'),
+            'Telefono: ' + (telefono || 'No especificado'),
+            'Mensaje: ' + (mensaje || 'Quiero conocer detalles y una demo.')
+        ].join('\n');
 
-    📦 Software: ${softwareTexto}
-    💼 Plan: ${plan}
-    📧 Correo: ${correo}
+        return { texto, nombre, softwareTexto, plan, correo, telefono, mensaje };
+    }
 
-    📝 Mensaje:
-    ${mensaje || 'Deseo más información.'}`;
+    function previsualizarWhatsapp() {
+        const data = construirDatosMensaje();
+        if (!data) {
+            return;
+        }
 
-        const url = `https://wa.me/573132560420?text=${encodeURIComponent(texto)}`;
+        previewText.textContent = data.texto;
+        previewModal.show();
+    }
+
+    function enviarWhatsAppFinal() {
+        const data = construirDatosMensaje();
+        if (!data) {
+            return;
+        }
+
+        const url = 'https://wa.me/573132560420?text=' + encodeURIComponent(data.texto);
+        previewModal.hide();
         window.open(url, '_blank');
+    }
+
+    function enviarCorreo() {
+        const data = construirDatosMensaje();
+        if (!data) {
+            return;
+        }
+
+        const subject = 'Solicitud comercial - ' + data.plan;
+        const body = [
+            'Hola Alfa Digital,',
+            '',
+            'Quiero mas informacion comercial.',
+            'Nombre: ' + data.nombre,
+            'Software: ' + data.softwareTexto,
+            'Plan: ' + data.plan,
+            'Correo: ' + (data.correo || 'No especificado'),
+            'Telefono: ' + (data.telefono || 'No especificado'),
+            'Mensaje: ' + (data.mensaje || 'Quiero conocer detalles y una demo.')
+        ].join('\n');
+
+        const mailtoUrl = 'mailto:alfadijital.sas@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        window.location.href = mailtoUrl;
     }
 </script>
 @endsection

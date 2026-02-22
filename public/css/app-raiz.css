@@ -136,3 +136,46 @@ h1, h2, h3, h4, h5 {
 .tech-navbar:hover .logo-navbar {
     filter: brightness(0) invert(1);
 }
+
+/* =========================
+   NAVBAR FIJO
+========================= */
+.tech-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(250, 250, 250, 0.92) !important;
+}
+
+/* =========================
+   AJUSTE HOVER MENU
+========================= */
+.tech-navbar:hover {
+    background-color: rgba(250, 250, 250, 0.92) !important;
+}
+
+.tech-navbar:hover .navbar-brand,
+.tech-navbar:hover .nav-link:not(.btn-outline-info) {
+    color: #0f172a !important;
+}
+
+.tech-navbar:hover .logo-navbar {
+    filter: none;
+}
+
+.tech-navbar .nav-link.btn-outline-info:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+    color: #ffffff !important;
+}
+
+/* =========================
+   FIX CONTACTO EN HOVER MENU
+========================= */
+.tech-navbar:hover .nav-link.btn-outline-info {
+    color: #2563eb !important;
+    background-color: transparent;
+    border-color: #2563eb;
+}
